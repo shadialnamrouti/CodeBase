@@ -1,2 +1,2 @@
 # CodeBase
-A code library for all common algorithms in all languages
+A code base for all common algorithms in all languages
