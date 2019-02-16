@@ -13,16 +13,16 @@ namespace Codebase
             }
 
             
-            for (int write = 0; write < a.Length; write++)
+            for (int i = 0; i < a.Length; i++)
             {
                 
-                for (int sort = 0; sort < a.Length - 1; sort++)
+                for (int j = 0; j < a.Length - 1; j++)
                 {
                     
-                    if ((dynamic)a[sort] > a[sort + 1])
+                    if ((dynamic)a[j] > a[j + 1])
                     {
            
-                        Common.Swap(ref a[sort + 1], ref a[sort]);
+                        Common.Swap(ref a[j], ref a[j+1]);
 
                         if (verbose)
                         {
