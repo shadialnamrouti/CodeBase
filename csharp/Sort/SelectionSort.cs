@@ -17,7 +17,7 @@ namespace Codebase
             {
                 int smallest = i;
 
-                for (int j = i+1; j < a.Length; j++)
+                for (int j = i + 1; j < a.Length; j++)
                 {
 
                     if ((dynamic)a[smallest] > a[j])
@@ -25,10 +25,8 @@ namespace Codebase
 
                         Common.Swap(ref a[smallest], ref a[j]);
 
-                        if (verbose)
-                        {
-                            a.Print();
-                        }
+                        if (verbose) a.Print();
+
                     }
 
                 }

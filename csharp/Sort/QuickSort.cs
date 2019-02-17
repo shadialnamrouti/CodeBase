@@ -13,7 +13,7 @@ namespace Codebase
                 a.Print();
             }
 
-            QuickSort(a, 0, a.Length-1, verbose);
+            QuickSort(a, 0, a.Length - 1, verbose);
 
             if (verbose)
             {
@@ -25,7 +25,7 @@ namespace Codebase
 
         public static void QuickSort<T>(this T[] a, int start, int end, bool verbose = false) where T : struct
         {
-          
+
             if (start < end)
             {
                 int pivot = Partition(a, start, end, verbose);
@@ -42,7 +42,7 @@ namespace Codebase
 
         }
 
-        private static int Partition<T>(T[] a, int start, int end, bool verbose=false) where T : struct
+        private static int Partition<T>(T[] a, int start, int end, bool verbose = false) where T : struct
         {
             T pivot = a[start];
             while (true)
@@ -62,13 +62,12 @@ namespace Codebase
                 {
                     Common.Swap(ref a[start], ref a[end]);
 
-                    if (verbose)
-                        a.Print();
+                    if (verbose) a.Print();
 
                     if ((dynamic)a[start] == a[end])
-                        start++; 
+                        start++;
 
-                    
+
                 }
                 else
                 {

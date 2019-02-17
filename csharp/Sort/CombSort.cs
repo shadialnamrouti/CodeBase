@@ -4,7 +4,7 @@ namespace Codebase
 {
     public static partial class Sort
     {
-        //Based on https://en.wikipedia.org/wiki/Comb_sort#Pseudocode
+
         public static void CombSort<T>(this T[] a, bool verbose = false) where T : struct
         {
             if (verbose)
@@ -13,6 +13,7 @@ namespace Codebase
                 a.Print();
             }
 
+            //Based on https://en.wikipedia.org/wiki/Comb_sort
             double gap = a.Length; // Initialize gap size
             double shrink = 1.3; // Set the gap shrink factor
             bool sorted = false;
@@ -47,10 +48,8 @@ namespace Codebase
 
                         i++;
                     }
-
                 }
             }
-
         }
     }
 }
