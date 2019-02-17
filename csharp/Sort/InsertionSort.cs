@@ -4,7 +4,7 @@ namespace Codebase
 {
     public static partial class Sort
     {
-        public static void InsertionSort<T>(this T[] a, bool verbose = false) where T : struct
+        public static void InsertionSort<T>(this T[] a, bool verbose = true) where T : struct
         {
             if (verbose)
             {
@@ -21,7 +21,7 @@ namespace Codebase
                 }
         }
 
-        public static void InsertionSortV2<T>(this T[] a, bool verbose = false) where T : struct
+        public static void InsertionSortV2<T>(this T[] a, bool verbose = true) where T : struct
         {
             if (verbose)
             {
@@ -44,7 +44,7 @@ namespace Codebase
             }
         }
 
-        public static void InsertionSortV3<T>(this T[] a, bool verbose = false) where T : struct
+        public static void InsertionSortV3<T>(this T[] a, bool verbose = true) where T : struct
         {
             if (verbose)
             {

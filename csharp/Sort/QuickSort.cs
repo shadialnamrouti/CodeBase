@@ -5,7 +5,7 @@ namespace Codebase
     public static partial class Sort
     {
 
-        public static void QuickSort<T>(this T[] a, bool verbose = false) where T : struct
+        public static void QuickSort<T>(this T[] a, bool verbose = true) where T : struct
         {
             if (verbose)
             {
@@ -23,7 +23,7 @@ namespace Codebase
 
         }
 
-        public static void QuickSort<T>(this T[] a, int start, int end, bool verbose = false) where T : struct
+        public static void QuickSort<T>(this T[] a, int start, int end, bool verbose = true) where T : struct
         {
 
             if (start < end)
@@ -42,7 +42,7 @@ namespace Codebase
 
         }
 
-        private static int Partition<T>(T[] a, int start, int end, bool verbose = false) where T : struct
+        private static int Partition<T>(T[] a, int start, int end, bool verbose = true) where T : struct
         {
             T pivot = a[start];
             while (true)

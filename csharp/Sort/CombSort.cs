@@ -5,7 +5,7 @@ namespace Codebase
     public static partial class Sort
     {
 
-        public static void CombSort<T>(this T[] a, bool verbose = false) where T : struct
+        public static void CombSort<T>(this T[] a, bool verbose = true) where T : struct
         {
             if (verbose)
             {
