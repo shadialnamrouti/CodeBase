@@ -14,66 +14,42 @@ namespace Codebase
             }
 
             QuickSort(a, 0, a.Length - 1, verbose);
+        }
 
-            if (verbose)
+        //Based on https://en.wikipedia.org/wiki/Quicksort
+        public static void QuickSort<T>(this T[] a, int lo, int hi, bool verbose = true) where T : struct
+        {
+
+            if (lo < hi)
             {
-                Console.WriteLine(nameof(QuickSort));
-                a.Print();
+                int pivot = Partition(a, lo, hi, verbose);
+
+                QuickSort(a, lo, pivot - 1, verbose);
+                QuickSort(a, pivot + 1, hi, verbose);
+                
             }
 
         }
 
-        public static void QuickSort<T>(this T[] a, int start, int end, bool verbose = true) where T : struct
+        //Based on https://en.wikipedia.org/wiki/Quicksort
+        private static int Partition<T>(T[] a, int lo, int hi, bool verbose = true) where T : struct
         {
+            T pivot = a[hi];
+            int i = lo;
 
-            if (start < end)
-            {
-                int pivot = Partition(a, start, end, verbose);
-
-                if (pivot > 1)
+            for (int j = lo; j <= hi - 1; j++)
+                if ((dynamic)a[j] < pivot)
                 {
-                    QuickSort(a, start, pivot - 1, verbose);
-                }
-                if (pivot + 1 < end)
-                {
-                    QuickSort(a, pivot + 1, end, verbose);
-                }
-            }
-
-        }
-
-        private static int Partition<T>(T[] a, int start, int end, bool verbose = true) where T : struct
-        {
-            T pivot = a[start];
-            while (true)
-            {
-
-                while ((dynamic)a[start] < pivot)
-                {
-                    start++;
-                }
-
-                while ((dynamic)a[end] > pivot)
-                {
-                    end--;
-                }
-
-                if (start < end)
-                {
-                    Common.Swap(ref a[start], ref a[end]);
-
+                    Common.Swap(ref a[i], ref a[j]);
                     if (verbose) a.Print();
 
-                    if ((dynamic)a[start] == a[end])
-                        start++;
-
-
+                    i++;
                 }
-                else
-                {
-                    return end;
-                }
-            }
+
+            Common.Swap(ref a[i], ref a[hi]);
+            if (verbose) a.Print();
+
+            return i;
         }
     }
 }
