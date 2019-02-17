@@ -5,7 +5,7 @@ namespace Codebase
     //Based https://en.wikipedia.org/wiki/Stack_(abstract_data_type)
     public class StackArray<T>
     {
-        private T[] Items;
+        private readonly T[] Items;
         private int StackTop;
         private readonly int MaxSize;
 
@@ -21,15 +21,25 @@ namespace Codebase
             if (IsFull())
                 throw new Exception("Overflow!");
             else
-                Items[StackTop++] = item;
+                Items[StackTop] = item;
+
+            StackTop++;
         }
 
         public T Pop()
         {
+            T item;
+
             if (IsEmpty())
                 throw new Exception("Underflow!");
             else
-                return Items[--Top];
+            {
+                --StackTop;
+                item = Items[StackTop];
+            }
+
+            return item;
+
         }
 
         public bool IsEmpty()
