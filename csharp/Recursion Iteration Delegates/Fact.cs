@@ -4,7 +4,6 @@ namespace Codebase
 {
     public static partial class Recursion
     {
-        
         //Delegate: Defaulted to recursive version
         delegate int FactDelegate(int item);
         public static int Fact(int item, bool isRecursion = true)
@@ -38,8 +37,5 @@ namespace Codebase
 
             return Fact;
         }
-
-
-
     }
 }

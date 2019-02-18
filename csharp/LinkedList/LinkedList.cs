@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Codebase
+namespace Codebase.LinkedLists
 {
     public class Node
     {
@@ -21,7 +21,8 @@ namespace Codebase
 
     public class LinkedList
     {
-        private Node Head;
+        private Node Head { get; set; }
+
         public Node First
         {
             get => Head;
@@ -36,12 +37,12 @@ namespace Codebase
         {
             get
             {
-                Node p = Head;
+                Node node = Head;
                 //Based partially on https://en.wikipedia.org/wiki/Linked_list
-                while (p.Next != null)
-                    p = p.Next; //traverse the list until p is the last node.The last node always points to NULL.
+                while (node.Next != null)
+                    node = node.Next; //traverse the list until p is the last node.The last node always points to NULL.
 
-                return p;
+                return node;
             }
             set
             {
@@ -56,10 +57,10 @@ namespace Codebase
             if (verbose) Print();
         }
 
-        public void AddFirst(Node node, bool verbose = true)
+        public void AddFirst(Node newHead, bool verbose = true)
         {
-            node.Next = Head;
-            Head = node;
+            newHead.Next = Head;
+            Head = newHead;
             if (verbose) Print();
         }
 
@@ -71,89 +72,94 @@ namespace Codebase
 
         public Node RemoveFirst(bool verbose = true)
         {
-            Node temp = First;
+            Node first = First;
             Head = First.Next;
             if (verbose) Print();
-            return temp;
+            return first;
         }
 
         public Node RemoveLast(bool verbose = true)
         {
-            Node p = Head;
-            Node temp = Last;
+            Node parent = Head;
+            Node last = Last;
 
-            while (p.Next != temp)
-                p = p.Next;
+            while (parent.Next != last)
+                parent = parent.Next;
 
-            p.Next = null;
+            parent.Next = null;
             if (verbose) Print();
 
-            return temp;
+            return last;
         }
 
-        public void AddAfter(Node node, object data, bool verbose = true)
+        public void AddAfter(Node parent, object data, bool verbose = true)
         {
-            Node temp = new Node()
-            {   Data = data,
-                Next = node.Next
+            Node child = new Node()
+            {
+                Data = data,
+                Next = parent.Next //it becomes the parent of the original child
             };
 
-            node.Next = temp;
+            parent.Next = child;
 
             if (verbose) Print();
         }
 
-        public void AddBefore(Node node, object data, bool verbose = true)
+        public void AddBefore(Node child, object data, bool verbose = true)
         {
-            Node temp = new Node(data);
+            Node parent = Head;
 
-            Node p = Head;
-
-            while (p.Next != node) //Finding the node before
+            while (parent.Next != child) //Finding the parent 
             {
-                p = p.Next;
+                parent = parent.Next;
             }
 
-            temp.Next = p.Next; //same as  = node
-            p.Next = temp;
+            Node newParent = new Node
+            {
+                Data = data,
+                Next = child //same as  = parent.Next
+            };
+
+            //Reattach the original parent to the new parent
+            parent.Next = newParent;
 
             if (verbose) Print();
         }
 
         public Node Find(object data)
         {
-            Node p = Head;
+            Node node = Head;
 
-            while (p != null)
+            while (node != null)
             {
-                if (p.Data == data)
-                    return p;
+                if (node.Data == data)
+                    return node;
 
-                p = p.Next;
+                node = node.Next;
             }
             return null;
         }
 
-        public void Remove(Node node, bool verbose = true)
+        public void Remove(Node child, bool verbose = true)
         {
-            Node p = Head;
+            Node parent = Head;
 
-            while (p.Next != node)
+            while (parent.Next != child)
             {
-                p = p.Next;
+                parent = parent.Next;
             }
 
-            p.Next = node.Next;
+            parent.Next = child.Next; //jump over the node-to-be-removed
             if (verbose) Print();
         }
 
         public void Print()
         {
-            Node p = Head;
-            while (p != null) //LinkedList iterator
+            Node node = Head;
+            while (node != null) //LinkedList iterator
             {
-                Console.Write(p.Data + " ");
-                p = p.Next; //traverse the list until p is the last node.The last node always points to NULL.
+                Console.Write(node.Data + " ");
+                node = node.Next; //traverse the list until p is the last node.The last node always points to NULL.
             }
             Console.WriteLine();
         }
