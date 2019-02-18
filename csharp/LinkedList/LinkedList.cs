@@ -93,8 +93,11 @@ namespace Codebase
 
         public void AddAfter(Node node, object data, bool verbose = true)
         {
-            Node temp = new Node(data);
-            temp.Next = node.Next;
+            Node temp = new Node()
+            {   Data = data,
+                Next = node.Next
+            };
+
             node.Next = temp;
 
             if (verbose) Print();
