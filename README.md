@@ -2,4 +2,4 @@
 A code base for all common algorithms in all languages
 
 The code is published to the following address:
-https://www.shadinamrouti.com/home/codebase
+https://www.shadinamrouti.com/shadi-namrouti/codebase
